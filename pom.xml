@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Project Information -->
+    <name>E2E Test Template</name>
+    <description>This project is used as E2E test template.</description>
+    <url>https://ministryofprogramming.com</url>
+    <contributors>
+        <contributor>
+            <name>Anes Lozo</name>
+            <email>anes.lozo@ministryofprogramming.com</email>
+            <organization>Ministry of Programming</organization>
+            <roles>
+                <role>DevOps</role>
+            </roles>
+        </contributor>
+    </contributors>
+
+    <!-- The Basics -->
+    <groupId>com.ministryofprogramming</groupId>
+    <artifactId>e2e-test-template</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.version>3.8.0</maven.compiler.version>
+		<maven.surefire.plugin.version>2.20</maven.surefire.plugin.version>
+		<java.version>1.8</java.version>
+		<aspectj.version>1.8.10</aspectj.version>
+		<allure.maven.version>2.9</allure.maven.version>
+		<allure.cucumber.jvm.version>2.8.1</allure.cucumber.jvm.version>
+		<cucumber.java.version>4.2.0</cucumber.java.version>
+		<cucumber.junit.version>4.2.0</cucumber.junit.version>
+		<cucumber.picocontainer.version>4.2.0</cucumber.picocontainer.version>
+		<gherkin.version>6.0.14</gherkin.version>
+		<junit.version>4.12</junit.version>
+		<picocontainer.version>2.15</picocontainer.version>
+		<selenium.java.version>3.14.0</selenium.java.version>
+		<slf4j.simple.version>1.7.25</slf4j.simple.version>
+	</properties>
+
+    <profiles>
+        <!-- The configuration of the DEVELOPMENT profile -->
+        <profile>
+            <id>dev</id>
+            <properties>
+                <env>dev</env>
+            </properties>
+			<!-- The DEV profile is active by default -->
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <!-- The configuration of the PRODUCTION profile -->
+        <profile>
+            <id>prod</id>
+            <properties>
+                <env>prod</env>
+            </properties>
+        </profile>
+    </profiles>
+
+ 	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>io.qameta.allure</groupId>
+				<artifactId>allure-maven</artifactId>
+				<version>${allure.maven.version}</version>
+			</plugin>
+		</plugins>
+	</reporting>
+
+	<dependencies>
+		<dependency>
+			<groupId>io.qameta.allure</groupId>
+			<artifactId>allure-cucumber-jvm</artifactId>
+			<version>${allure.cucumber.jvm.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.qameta.allure</groupId>
+			<artifactId>allure-maven</artifactId>
+			<version>${allure.maven.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>${cucumber.java.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<version>${cucumber.junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>gherkin</artifactId>
+			<version>${gherkin.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-picocontainer</artifactId>
+			<version>${cucumber.picocontainer.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.picocontainer</groupId>
+			<artifactId>picocontainer</artifactId>
+			<version>${picocontainer.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>${selenium.java.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>${slf4j.simple.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<version>${maven.compiler.version}</version>
+			<type>maven-plugin</type>
+		</dependency>
+	</dependencies>
+
+	<!-- Build Settings -->
+	<build>
+		<finalName>${project.artifactId}-${project.version}</finalName>
+		<directory>target</directory>
+		<outputDirectory>target/classes</outputDirectory>
+		<testOutputDirectory>target/test-classes</testOutputDirectory>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<testSourceDirectory>src/test/java</testSourceDirectory>
+
+		<filters>
+			<filter>src/test/resources/properties/${env}.properties</filter>
+		</filters>
+
+		<resources>
+			<resource>
+				<directory>${basedir}/src/main/resources</directory>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>${basedir}/src/test/resources</directory>
+			</testResource>
+		</testResources>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler.version}</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<compilerArgument>-Werror</compilerArgument>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven.surefire.plugin.version}</version>
+				<configuration>
+					<systemPropertyVariables>
+						<env>${env}</env>
+						<testFailureIgnore>true</testFailureIgnore>
+						<parallel>classes</parallel>
+						<threadCount>10</threadCount>
+					</systemPropertyVariables>
+					<argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+					</argLine>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.aspectj</groupId>
+						<artifactId>aspectjweaver</artifactId>
+						<version>${aspectj.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+</project>
