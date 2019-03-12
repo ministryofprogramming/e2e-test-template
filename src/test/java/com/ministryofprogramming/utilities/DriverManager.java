@@ -9,7 +9,6 @@ import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-
 import java.net.URL;
 
 public class DriverManager {
@@ -43,20 +42,18 @@ public class DriverManager {
 				break;
 			case "chrome":
 				System.setProperty("webdriver.chrome.driver", ENV_CONFIG.getEnvConfig("chromeDriver"));
-				chromeOptions.addArguments("--start-maximized");
+				chromeOptions.addArguments("--Start-maximized");
 				chromeOptions.addArguments("--no-default-browser-check");
 				chromeOptions.addArguments("--disable-infobars");
 				driver = new ChromeDriver(chromeOptions);
 				break;
 			case "zalenium":
-				chromeOptions.addArguments("--start-maximized");
 				DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
 				desiredCapabilities.setCapability(CapabilityType.BROWSER_NAME, BrowserType.CHROME);
-				// desiredCapabilities.setCapability("name", scenario.getId().split(";")[0]);
-				// desiredCapabilities.setCapability("build", "naga-trader-web");
 				desiredCapabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
 				try {
 					driver = new RemoteWebDriver(new URL(ENV_CONFIG.getEnvConfig("zaleniumRemoteURL")), desiredCapabilities);
+					driver.manage().window().fullscreen();
 				} catch (Exception e) {
 					throw new IllegalStateException("The webdriver system property must be set");
 				}

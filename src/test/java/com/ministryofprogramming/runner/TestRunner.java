@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(features = "src/test/java/com/ministryofprogramming/tests/features",
         glue = "com.ministryofprogramming.tests.steps",
         monochrome = true,
-        tags = {"@dev"},
+        tags = {"@local"},
         plugin = {"pretty", "io.qameta.allure.cucumberjvm.AllureCucumberJvm"})
 
 public class TestRunner {

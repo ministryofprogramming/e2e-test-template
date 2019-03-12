@@ -10,7 +10,7 @@ public class ConfigManager {
     private static Properties properties;
 
     /** Define constant for our config properties file directory so that we can load configuration **/
-    private final String CONFIG_PROPERTIES_DIRECTORY = System.getProperty("user.dir") + "//src//test//resources//properties//" + System.getProperty("env", "dev") + ".properties";
+    private final String CONFIG_PROPERTIES_DIRECTORY = System.getProperty("user.dir") + "//src//test//resources//properties//" + System.getProperty("env", "local") + ".properties";
 
     /** Private constructor to prevent others from instantiating this class **/
     private ConfigManager(){}

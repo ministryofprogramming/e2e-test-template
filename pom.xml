@@ -43,16 +43,23 @@
 	</properties>
 
     <profiles>
+	    <!-- The configuration of the LOCAL profile -->
+        <profile>
+            <id>local</id>
+            <properties>
+                <env>local</env>
+            </properties>
+			<!-- The DEV profile is active by default -->
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
         <!-- The configuration of the DEVELOPMENT profile -->
         <profile>
             <id>dev</id>
             <properties>
                 <env>dev</env>
             </properties>
-			<!-- The DEV profile is active by default -->
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
         </profile>
         <!-- The configuration of the PRODUCTION profile -->
         <profile>

@@ -1,16 +1,18 @@
 package com.ministryofprogramming.utilities;
 
 
+import com.ministryofprogramming.tests.pageObjects.*;
+
 import java.io.IOException;
 
 public class PageObjects extends Driver {
 
-    /** Trader Page Objects **/
- //   public static TraderBasePage traderBasePage = null;
+    /** Page Objects **/
+    public static Start startPage = null;
 
 
-  //  public static void loadTraderPageObjects(Driver driver) throws IOException {
-     //   traderBasePage = new TraderBasePage(driver);
-    //}
+    public static void loadPageObjects(Driver driver) throws IOException {
+        startPage = new Start(driver);
+    }
 
 }
