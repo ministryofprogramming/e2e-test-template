@@ -36,7 +36,7 @@
 		<cucumber.junit.version>4.2.0</cucumber.junit.version>
 		<cucumber.picocontainer.version>4.2.0</cucumber.picocontainer.version>
 		<gherkin.version>6.0.14</gherkin.version>
-		<junit.version>4.12</junit.version>
+		<junit.version>4.13.1</junit.version>
 		<picocontainer.version>2.15</picocontainer.version>
 		<selenium.java.version>3.14.0</selenium.java.version>
 		<slf4j.simple.version>1.7.25</slf4j.simple.version>
